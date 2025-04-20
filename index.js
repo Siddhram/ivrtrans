@@ -5,7 +5,9 @@ const { AssemblyAI } = require('assemblyai');
 const app = express();
 
 // Enable CORS for all origins
-app.use(cors()); // 👈 This allows requests from any website
+app.use(cors({
+  origin: '*' // Allow all origins
+}));
 app.use(express.json());
 
 // AssemblyAI setup
