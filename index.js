@@ -22,7 +22,20 @@ function detectEmergency(transcript) {
   const dangerWords = ['help', 'fire', 'accident', 'emergency', 'bleeding'];
   return dangerWords.some(word => transcript.toLowerCase().includes(word));
 }
+app.get('/connect-user', (req, res) => {
+  const { From, To } = req.query;
 
+  const response = `
+    <Response>
+      <Dial record="true" callerId="${To}">
+        <Number>+919767738681</Number> <!-- Replace with YOUR number -->
+      </Dial>
+    </Response>
+  `;
+
+  res.set('Content-Type', 'text/xml');
+  res.send(response);
+});
 // Handle Exotel Passthru request
 app.post('/analyze-call', async (req, res) => {
   try {
