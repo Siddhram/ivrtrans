@@ -37,9 +37,9 @@ app.get('/connect-user', (req, res) => {
   res.send(response);
 });
 // Handle Exotel Passthru request
-app.post('/analyze-call', async (req, res) => {
+app.get('/analyze-call', async (req, res) => {
   try {
-    const { CallSid, From, To, RecordingUrl } = req.body;
+    const { CallSid, From, To, RecordingUrl } = req.query;
 
     console.log(`📞 Call from ${From}`);
     console.log(`🔊 Recording URL: ${RecordingUrl}`);
