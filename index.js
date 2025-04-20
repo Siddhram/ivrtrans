@@ -37,7 +37,7 @@ app.post('/analyze-call', async (req, res) => {
       console.log(`🚨 Emergency detected for CallSid ${CallSid}`);
     } else {
       console.log(`✅ No emergency for CallSid ${CallSid}`);
-          res.status(500).send('Internal Server Error');
+          res.status(400).send('Internal Server Error');
 return;
     }
 
