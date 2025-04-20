@@ -10,7 +10,7 @@ app.use(express.json());
 
 // AssemblyAI setup
 const client = new AssemblyAI({
-  apiKey:process.env.KEY|| '5a67904c1d1748228c3030839d0ea6fb',
+  apiKey:'5a67904c1d1748228c3030839d0ea6fb',
   timeout: 60000,
 });
 
