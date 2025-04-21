@@ -62,12 +62,7 @@ app.get('/analyze-call', async (req, res) => {
 
     // Request transcription of the recorded call
     const config = { audio_url: RecordingUrl };
-    const transcriptResponse = await client.transcripts.transcribe(config);
-
-    // Wait for transcription to complete
-    const transcriptId = transcriptResponse.id;
-    let transcript = await client.transcripts.get(transcriptId);
-
+   const transcript = await client.transcripts.transcribe(config)
     // // Poll until transcription is ready
     // while (transcript.status !== 'completed') {
     //   console.log('🕐 Waiting for transcription...');
