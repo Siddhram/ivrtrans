@@ -5,7 +5,6 @@ const { AssemblyAI } = require('assemblyai');
 const app = express();
 
 // Enable CORS for all origins
-console.log('hi');
 app.use(cors({
   origin: '*' // Allow all origins
 }));
@@ -23,20 +22,12 @@ function detectEmergency(transcript) {
   return dangerWords.some(word => transcript.toLowerCase().includes(word));
 }
 app.get('/connect-user', (req, res) => {
-  const { From, To } = req.query;
-
-  const response = `
-    <Response>
-      <Dial record="true" callerId="${To}">
-        <Number>+919421067952</Number> <!-- Replace with YOUR number -->
-      </Dial>
-    </Response>
-  `;
-
-  res.set('Content-Type', 'text/xml');
-  res.send(response);
+  console.log('hi');
+  res.json({
+    DialWhom: ["+919999999999"],  // Replace with your real responder's number
+    CallerId: "+911122334455"     // Verified Exotel caller ID
+  });
 });
-// Handle Exotel Passthru request
 app.get('/analyze-call', async (req, res) => {
   try {
     const { CallSid, From, To, RecordingUrl } = req.query;
