@@ -31,24 +31,24 @@ app.get('/connect-handler', (req, res) => {
 
   // Prepare the response for Exotel
   const response = {
-    "fetch_after_attempt": false,
-    "destination": {
-      "numbers": ["+919812345678"]  // Replace with the number you want to dial
-    },
-    "outgoing_phone_number": "+918047115777",  // Your Exotel number
-    "record": true,
-    "recording_channels": "dual",
-    "max_ringing_duration": 45,
-    "max_conversation_duration": 3600,
-    "music_on_hold": {
-      "type": "operator_tone"
-    },
-    "start_call_playback": {
-      "playback_to": "both",
-      "type": "text",
-      "value": "This text would be spoken out to the callee"
-    }
-  };
+  "fetch_after_attempt": false,
+  "destination": {
+    "numbers": ["+919421067952"]
+  },
+  "outgoing_phone_number": "+02048556813",
+  "record": true,
+  "recording_channels": "dual",
+  "max_ringing_duration": 45,
+  "max_conversation_duration": 3600,
+  "music_on_hold": {
+    "type": "operator_tone"
+  },
+  "start_call_playback": {
+    "playback_to": "both",
+    "type": "text",
+    "value": "This text would be spoken out to the callee"
+  }
+};
 
   // Send the JSON response
   res.json(response);
