@@ -68,12 +68,12 @@ app.get('/analyze-call', async (req, res) => {
     const transcriptId = transcriptResponse.id;
     let transcript = await client.transcripts.get(transcriptId);
 
-    // Poll until transcription is ready
-    while (transcript.status !== 'completed') {
-      console.log('🕐 Waiting for transcription...');
-      await new Promise(resolve => setTimeout(resolve, 5000)); // Wait for 5 seconds
-      transcript = await client.transcripts.get(transcriptId);
-    }
+    // // Poll until transcription is ready
+    // while (transcript.status !== 'completed') {
+    //   console.log('🕐 Waiting for transcription...');
+    //   await new Promise(resolve => setTimeout(resolve, 5000)); // Wait for 5 seconds
+    //   transcript = await client.transcripts.get(transcriptId);
+    // }
 
     console.log(`📝 Transcript: ${transcript.text}`);
 
