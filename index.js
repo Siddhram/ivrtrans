@@ -21,12 +21,37 @@ function detectEmergency(transcript) {
   const dangerWords = ['help', 'fire', 'accident', 'emergency', 'bleeding'];
   return dangerWords.some(word => transcript.toLowerCase().includes(word));
 }
-app.get('/connect-user', (req, res) => {
-  console.log('hi');
-  res.json({
-    DialWhom: ["+919999999999"],  // Replace with your real responder's number
-    CallerId: "+911122334455"     // Verified Exotel caller ID
-  });
+
+app.get('/connect-handler', (req, res) => {
+  // Extract the parameters from the query
+  const { CallSid, CallFrom, CallTo, Direction, CallType, DialWhomNumber } = req.query;
+
+  // Log the received data (you can use this for debugging)
+  console.log('Received Call Data:', req.query);
+
+  // Prepare the response for Exotel
+  const response = {
+    "fetch_after_attempt": false,
+    "destination": {
+      "numbers": ["+919812345678"]  // Replace with the number you want to dial
+    },
+    "outgoing_phone_number": "+918047115777",  // Your Exotel number
+    "record": true,
+    "recording_channels": "dual",
+    "max_ringing_duration": 45,
+    "max_conversation_duration": 3600,
+    "music_on_hold": {
+      "type": "operator_tone"
+    },
+    "start_call_playback": {
+      "playback_to": "both",
+      "type": "text",
+      "value": "This text would be spoken out to the callee"
+    }
+  };
+
+  // Send the JSON response
+  res.json(response);
 });
 app.get('/analyze-call', async (req, res) => {
   try {
